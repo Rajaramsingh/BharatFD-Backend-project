@@ -15,4 +15,5 @@ const translateText = async (text, targetLang) => {
     }
 };
 
+
 module.exports = { translateText }; 
