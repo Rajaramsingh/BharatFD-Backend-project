@@ -1,0 +1,17 @@
+# Environment variables
+.env
+.env.test
+
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Coverage directory
+coverage/
+
+# IDE specific files
+.idea/
+.vscode/

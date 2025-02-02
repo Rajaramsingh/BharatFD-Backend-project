@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FAQ Admin</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>FAQ Management</h1>
+        <form id="faqForm">
+            <div class="form-group">
+                <label>Question</label>
+                <input type="text" name="question" required>
+            </div>
+            <div class="form-group">
+                <label>Answer</label>
+                <textarea id="editor" name="answer"></textarea>
+            </div>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => console.error(error));
+    </script>
+</body>
+</html> 

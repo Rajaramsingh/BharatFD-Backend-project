@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ Editor</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <style>
+        .editor-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .ck-editor__editable {
+            min-height: 200px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <h2>Create FAQ</h2>
+        <form id="faqForm">
+            <div class="form-group">
+                <label>Question:</label>
+                <textarea id="question"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Answer:</label>
+                <textarea id="answer"></textarea>
+            </div>
+            <button type="submit">Save FAQ</button>
+        </form>
+    </div>
+
+    <script>
+        let questionEditor, answerEditor;
+
+        ClassicEditor
+            .create(document.querySelector('#question'))
+            .then(editor => {
+                questionEditor = editor;
+            })
+            .catch(error => console.error(error));
+
+        ClassicEditor
+            .create(document.querySelector('#answer'))
+            .then(editor => {
+                answerEditor = editor;
+            })
+            .catch(error => console.error(error));
+
+        document.getElementById('faqForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const faqData = {
+                question: questionEditor.getData(),
+                answer: answerEditor.getData()
+            };
+
+            try {
+                const response = await fetch('http://localhost:9999/api/faqs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(faqData)
+                });
+
+                const result = await response.json();
+                alert('FAQ created successfully!');
+                questionEditor.setData('');
+                answerEditor.setData('');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error creating FAQ');
+            }
+        });
+    </script>
+</body>
+</html>
