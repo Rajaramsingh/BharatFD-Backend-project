@@ -1,6 +1,6 @@
 # BharatFD Backend Project
 
-A multilingual FAQ management system built with Node.js, Express, and MongoDB. Supports automatic translation to Hindi and Bengali with rich text formatting.
+A multilingual FAQ management system built with Node.js, Express, and MongoDB. Supports automatic translation to many language ( like Hindi and Bengali) with rich text formatting.
 
 ## Features
 
